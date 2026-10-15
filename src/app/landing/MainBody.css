@@ -1,0 +1,13 @@
+.project-container{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+}
+
+.project-section{
+    margin-top: 4rem;
+}
+.project-section > h2 {
+    font-weight: 300;
+    font-size: 2rem;
+}
