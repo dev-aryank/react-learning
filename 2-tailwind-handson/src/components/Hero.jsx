@@ -8,7 +8,7 @@ const Hero = () => {
               <HeaderTestimonial text="Way easier than Calendly." />
               <HeaderTestimonial text="Okay, I’m hooked!" />
           </div>
-          <h1>
+          <h1 className="text-amber-400">
               The modern way to <span>find a time to meet</span>
           </h1>
           <p>
