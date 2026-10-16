@@ -9,7 +9,7 @@ const Navbar = () => {
             </a>
             <ul id="menu-bar" className="hidden lg:flex flex-1 mx-12 gap-8 text-lg">
                 <li id="menu-item">
-                    <LinkButton text="About"/>
+                    <LinkButton text="Features"/>
                 </li>
                 <li id="menu-item">
                     <LinkButton text="Pricing"/>
