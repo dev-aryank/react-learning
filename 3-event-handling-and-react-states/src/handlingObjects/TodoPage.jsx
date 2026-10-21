@@ -2,81 +2,115 @@ import { useState } from 'react'
 import TodoItem from './TodoItem';
 
 const TodoPage = () => {
+  const [todos, setTodos] = useState([]);
+  const emptyState = (
+    <h3>Nothing's here, Add a todo!</h3>
+  )
+  const completedTodos = todos.filter((item) => item.completed);
 
-    // const [person, setPerson] = useState({
-    //     name:'aryan',
-    //     age:21
-    // });
+  function handleFormSubmit(e) {
+    e.preventDefault();
+    const todoText = e.target["todo"].value;
+    // todos.push(todoText); // OBJECT MUTATION - AVOID DOING THIS BECAUSE IT WILL NOT RE-RENDER THE COMPONENT
+    const newTodos = [
+      ...todos,
+      {
+        text: todoText,
+        id: crypto.randomUUID(),
+        completed: false
+      }
+    ]; // SPREAD OPERATOR - THIS WILL CREATE A NEW ARRAY AND UPDATE THE STATE
+    setTodos(newTodos);
 
-    // function handleIncreaseAge() {
-    //     //  person.age++;   // OBJECT MUTATION - AVOID DOING THIS BECAUSE IT WILL NOT RE-RENDER THE COMPONENT
+    e.target.reset();
+  }
 
-    //         const newPerson = {...person, age: person.age + 1}; // SPREAD OPERATOR - THIS WILL CREATE A NEW OBJECT AND UPDATE THE STATE
-    //         setPerson(newPerson);
-    // }
+  function onTodoToggle(id, checked) {
+    const newTodos = todos.map((item) => {
+      if(item.id === id) {
+        return {...item, completed: checked};
+      }
+      return item;
+    });
+    setTodos(newTodos);
+  }
 
-    const [todos, setTodos] = useState([]);
+  function onTodoDelete(id) {
+    const newTodos = todos.filter((item) => item.id !== id);
+    setTodos(newTodos);
+  }
 
+  function onDeleteAll() {
+    setTodos([]);
+  }
 
-    function handleFormSubmit(e) {
-        e.preventDefault();
-        const todoText = e.target["todo"].value;
-        // todos.push(todoText); // OBJECT MUTATION - AVOID DOING THIS BECAUSE IT WILL NOT RE-RENDER THE COMPONENT
-        const newTodos = [...todos, {
-            text: todoText,
-            id: crypto.randomUUID(),
-            completed: false
-        }]; // SPREAD OPERATOR - THIS WILL CREATE A NEW ARRAY AND UPDATE THE STATE
-        setTodos(newTodos); 
+  const compareFunction = (a, b) => a.text.localeCompare(b.text);
+  function sortTodos() {
+    const newTodos = [...todos].sort(compareFunction);
+    setTodos(newTodos);
+  }
 
-        e.target.reset();
-    }
+  const isTodoEmpty = todos.length === 0;
+  const isSorted = todos.every((item, index, arr) => {
+    if(index === 0) return true;
+    return compareFunction(arr[index - 1], item) <= 0;
+  });
 
-    function onTodoToggle(id, checked) {
-        const newTodos = todos.map((item) => {
-            if(item.id === id) {
-                return {...item, completed: checked};
-            }
-            return item;
-        });
-        setTodos(newTodos);   
-    }
+  function onTodoTextUpdate(id, newText) {
+    const newTodos = todos.map((item) => {
+      if(item.id === id) {
+        return {...item, text: newText};
+      }
+      return item;
+    });
+    setTodos(newTodos);
+  }
 
-    function onTodoDelete(id) {
-        const newTodos = todos.filter((item) => item.id !== id);
-        setTodos(newTodos);
-    }
+  const handleMoveUp = (index) => {
+    if(index === 0) return; // Can't move up the first item
+    const newTodos = [...todos];
+    [newTodos[index - 1], newTodos[index]] = [newTodos[index], newTodos[index - 1]];
+    setTodos(newTodos);
+  }
 
-    const emptyState = (
-        <h3>Nothing's here, Add a todo!</h3>
-    )
+  const handleMoveDown = (index) => {
+    if(index === todos.length - 1) return; // Can't move down the last item
+    const newTodos = [...todos];
+    [newTodos[index], newTodos[index + 1]] = [newTodos[index + 1], newTodos[index]];
+    setTodos(newTodos);
+  }
 
   return (
     <div>
-        {/* <p>{person.name}</p>
-        <p>{person.age}</p>
+      <h1>Todo Page</h1>
+      <form onSubmit={handleFormSubmit}>
+        <input type="text" placeholder='Enter your todo' name="todo" />
+        <button type='submit'>Add Todo</button>
+      </form>
 
-        <button onClick={handleIncreaseAge}>Increase Age</button> */}
+      {!isSorted && <button onClick={sortTodos}>Sort the Todos</button>}
+      {isTodoEmpty || <button onClick={onDeleteAll}>Delete All</button>}
 
-        <h1>Todo Page</h1>
-        <form onSubmit={handleFormSubmit}>
-            <input type="text" placeholder='Enter your todo' name="todo" />
-            <button type='submit'>Add Todo</button>
-        </form>
+      {isTodoEmpty && emptyState}
+      {!isTodoEmpty && <p>{completedTodos.length} of {todos.length} completed</p>}
 
-        {todos.length === 0 && emptyState}
-
-        <div>
-            <ul>
-                {todos.map((item) => 
-                    <TodoItem 
-                        key={item.id} 
-                        item={item} 
-                        onTodoToggle={onTodoToggle} 
-                        onTodoDelete={onTodoDelete} />
-                )}
-            </ul>
-        </div>
+      <div>
+        <ul>
+          {todos.map((item, index) =>
+            <TodoItem
+              key={item.id}
+              item={item}
+              onTodoToggle={onTodoToggle}
+              onTodoDelete={onTodoDelete} 
+              onTodoTextUpdate={onTodoTextUpdate}
+              onMoveUp={handleMoveUp}
+              onMoveDown={handleMoveDown}
+              index={index}
+              todosLength={todos.length}
+            />
+          )}
+        </ul>
+      </div>
     </div>
   )
 }
