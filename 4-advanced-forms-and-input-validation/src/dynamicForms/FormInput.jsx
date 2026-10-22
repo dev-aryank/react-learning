@@ -1,4 +1,4 @@
-const FormInput = ({id, label, options, type, name, value, onChange}) => {
+const FormInput = ({id, label, options, type, name, value, onChange, error}) => {
 
     const RadioComponent = type === "radio" && (
         <>
@@ -45,6 +45,7 @@ const FormInput = ({id, label, options, type, name, value, onChange}) => {
                     type === "checkbox" ?
                         (CheckBoxComponent) :
                         (<input id={id} type={type} name={name} value={value} onChange={onChange} />)}
+            {error && <p style={{color: "red"}}>{error}</p>}
         </div>
     )
 }
