@@ -3,7 +3,7 @@ import { z } from "zod";
 const ordersSchema = z.object({
   customer: z.object({
     name: z.string().min(3),
-    email: z.string().email()
+    email: z.email()
   }),
   id: z.number().min(1000),
   date: z.date().optional().nullable(),
