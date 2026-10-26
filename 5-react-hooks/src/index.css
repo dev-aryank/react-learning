@@ -1,4 +1,4 @@
-@import "tailwindcss";
+/* @import "tailwindcss";
 
 @import url("https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&family=Old+Standard+TT:ital,wght@0,400;0,700;1,400&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
 :root {
@@ -14,7 +14,6 @@ body {
     --font-body: "Roboto", serif;
     --font-display: "Exo 2", serif;
 
-    /* --color-accent: greenyellow; */
     --color-accent: oklch(0.905 0.182 98.111);
     --color-secondary-text: oklch(0.707 0.022 261.325);
     --color-accent-hover: oklch(0.945 0.129 101.54);
@@ -22,4 +21,4 @@ body {
 
 .bg-hover {
   @apply hover:bg-gray-700 rounded-md p-1 cursor-pointer;
-}
+} */
