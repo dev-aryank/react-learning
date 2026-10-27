@@ -7,23 +7,24 @@ import LearnUseRef2 from "./4_useRef/LearnUseRef2";
 import Dashboard from "./5_useContext/Dashboard";
 import TodoPage from "./todoApp/TodoPage";
 import { AuthProvider } from "./5_useContext/auth-context";
+import LearnCustomHook from "./6_customHook/LearnCustomHook";
 
 const App = () => {
-  const [user, setUser] = useState({
-    name: "Aryankumar",
-    age: 21,
-  });
+//   const [user, setUser] = useState({
+//     name: "Aryankumar",
+//     age: 21,
+//   });
 
-  function handleToggleName() {
-    setUser({
-      ...user,
-      name: user.name === "Aryan" ? "Aryankumar" : "Aryan",
-    });
-  }
+//   function handleToggleName() {
+//     setUser({
+//       ...user,
+//       name: user.name === "Aryan" ? "Aryankumar" : "Aryan",
+//     });
+//   }
 
   return (
     // <AuthContext.Provider value={{user, setUser}}>
-    <AuthProvider value={{user, setUser}}>
+    // <AuthProvider value={{user, setUser}}>
       <>
         {/* <LearnUseReducer /> */}
         {/* <TodoPage /> */}
@@ -31,10 +32,11 @@ const App = () => {
         {/* <LearnUseId /> */}
         {/* <LearnUseRef /> */}
         {/* <LearnUseRef2 /> */}
-        <button onClick={handleToggleName}>Toggle Name in App.jsx</button>
-        <Dashboard />
+        {/* <button onClick={handleToggleName}>Toggle Name in App.jsx</button>
+        <Dashboard /> */}
+        <LearnCustomHook />
       </>
-    </AuthProvider>
+    // </AuthProvider>
     // </AuthContext.Provider>
   );
 };
