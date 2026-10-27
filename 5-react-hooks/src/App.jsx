@@ -10,6 +10,9 @@ import { AuthProvider } from "./5_useContext/auth-context";
 import LearnCustomHook from "./6_customHook/LearnCustomHook";
 import LearnAxios from "./7_axios/LearnAxios";
 import CreatePost from "./7_axios/CreatePost";
+import LearnReactQuery from "./8_tanStackQuery/LearnReactQuery";
+import WrapperReactQuery from "./8_tanStackQuery/WrapperReactQuery";
+import CreatePostWithRQ from "./8_tanStackQuery/CreatePost";
 
 const App = () => {
 //   const [user, setUser] = useState({
@@ -38,7 +41,10 @@ const App = () => {
         <Dashboard /> */}
         {/* <LearnCustomHook /> */}
         {/* <LearnAxios /> */}
-        <CreatePost />
+        {/* <CreatePost /> */}
+        {/* <LearnReactQuery /> */}
+        {/* <WrapperReactQuery /> */}
+        <CreatePostWithRQ />
       </>
     // </AuthProvider>
     // </AuthContext.Provider>

@@ -11,7 +11,7 @@ export const useForm = ({ initialValues, onSubmit }) => {
     }));
   }
 
-  function handleFormsubmit(e) {
+  function handleFormSubmit(e) {
     e.preventDefault();
     //perform validations or some logic...
     onSubmit(formData);
@@ -25,5 +25,5 @@ export const useForm = ({ initialValues, onSubmit }) => {
     }
   }
 
-  return { formData, handleChange, handleFormsubmit, register };
+  return { formData, handleChange, handleFormSubmit, register };
 };
