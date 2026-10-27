@@ -8,6 +8,8 @@ import Dashboard from "./5_useContext/Dashboard";
 import TodoPage from "./todoApp/TodoPage";
 import { AuthProvider } from "./5_useContext/auth-context";
 import LearnCustomHook from "./6_customHook/LearnCustomHook";
+import LearnAxios from "./7_axios/LearnAxios";
+import CreatePost from "./7_axios/CreatePost";
 
 const App = () => {
 //   const [user, setUser] = useState({
@@ -34,7 +36,9 @@ const App = () => {
         {/* <LearnUseRef2 /> */}
         {/* <button onClick={handleToggleName}>Toggle Name in App.jsx</button>
         <Dashboard /> */}
-        <LearnCustomHook />
+        {/* <LearnCustomHook /> */}
+        {/* <LearnAxios /> */}
+        <CreatePost />
       </>
     // </AuthProvider>
     // </AuthContext.Provider>
