@@ -12,7 +12,7 @@ const ProductDetails = () => {
 
   useEffect(() => {
     async function fetchData() {
-      const response = await axios(`https://dummyjson.com/products/${id}`);
+      const response = await axios("https://dummyjson.com/products/"+id);
       const data = response.data;
       setProduct(data);
     }
