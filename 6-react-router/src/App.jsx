@@ -5,6 +5,7 @@ import Products from "./layouts/dashboard/Products";
 import Dashboard from "./layouts/dashboard/Dashboard";
 import DashboardHome from "./layouts/dashboard/DashboardHome";
 import Home from "./layouts/Home";
+import ProductDetails from "./layouts/dashboard/ProductDetails";
 
 function App() {
   return (
@@ -18,6 +19,8 @@ function App() {
           <Route index element={<DashboardHome />}/>
           <Route path="users" element={<Users />} />
           <Route path="products" element={<Products />} />
+
+          <Route path="products/:id/:title?" element={<ProductDetails />} />
         </Route>
 
         <Route path="*" element={<p>Not Found - 404</p>} />
