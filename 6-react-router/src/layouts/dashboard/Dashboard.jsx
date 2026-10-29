@@ -1,12 +1,14 @@
 import React from "react";
-import { Link, NavLink, Outlet } from "react-router";
+import { Link, NavLink, Outlet, useNavigation } from "react-router";
+import Loader from "../../component/Loader";
 
 const Dashboard = () => {
+  const navigation = useNavigation();
+  if (navigation.state === "loading") return <Loader />;
+
   return (
     <div className="bg-gray-900 text-white p-4 min-h-screen">
-      <h1 className="text-2xl font-semibold text-yellow-300">
-        Dashboard
-      </h1>
+      <h1 className="text-2xl font-semibold text-yellow-300">Dashboard</h1>
 
       <nav className="my-4 border py-6">
         <ul className="flex text-center">
@@ -16,8 +18,7 @@ const Dashboard = () => {
               replace
               className={({ isActive }) =>
                 `underline ${
-                  isActive &&
-                  "bg-blue-600 px-8 py-2 text-white rounded-sm"
+                  isActive && "bg-blue-600 px-8 py-2 text-white rounded-sm"
                 }`
               }
             >
@@ -31,8 +32,7 @@ const Dashboard = () => {
               replace
               className={({ isActive }) =>
                 `underline ${
-                  isActive &&
-                  "bg-blue-600 px-8 py-2 text-white rounded-sm"
+                  isActive && "bg-blue-600 px-8 py-2 text-white rounded-sm"
                 }`
               }
             >

@@ -1,25 +1,36 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router";
+import { useLoaderData, useNavigation, useParams } from "react-router";
+import Loader from "../../component/Loader";
+
+export async function loadProductById({ params }) {
+  const id = params.id;
+  const response = await axios("https://dummyjson.com/products/" + id);
+  return response.data;
+}
 
 const ProductDetails = () => {
-  const params = useParams();
-  const [product, setProduct] = useState(null);
-  console.log(params);
+  // const params = useParams();
+  // const [product, setProduct] = useState(null);
+  // console.log(params);
 
-  const id = params.id;
-  if (!id) return <p>Id not found!</p>;
+  // const id = params.id;
+  // if (!id) return <p>Id not found!</p>;
 
-  useEffect(() => {
-    async function fetchData() {
-      const response = await axios("https://dummyjson.com/products/"+id);
-      const data = response.data;
-      setProduct(data);
-    }
-    fetchData();
-  }, [id]);
+  // useEffect(() => {
+  //   async function fetchData() {
+  //     const response = await axios("https://dummyjson.com/products/" + id);
+  //     const data = response.data;
+  //     setProduct(data);
+  //   }
+  //   // fetchData();
+  // }, [id]);
 
-  if(!product) return <p>Loading...</p>
+  // if (!product) return <p>Loading...</p>;
+
+
+
+  const product = useLoaderData();
 
   return (
     <div className="space-y-2">

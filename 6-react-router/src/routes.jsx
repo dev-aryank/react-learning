@@ -9,8 +9,8 @@ import About from "./layouts/about/About";
 import Dashboard from "./layouts/dashboard/Dashboard";
 import DashboardHome from "./layouts/dashboard/DashboardHome";
 import Users from "./layouts/dashboard/Users";
-import Products from "./layouts/dashboard/Products";
-import ProductDetails from "./layouts/dashboard/ProductDetails";
+import Products, { loadProductsData } from "./layouts/dashboard/Products";
+import ProductDetails, { loadProductById } from "./layouts/dashboard/ProductDetails";
 import Loader from "./component/Loader";
 import ErrorPage from "./component/error-page";
 import MyErrorBoundary2 from "./component/my-beautiful-error-boundary";
@@ -63,9 +63,18 @@ const AppRouter = () => {
           <Route path="dashboard" element={<Dashboard />}>
             <Route index element={<DashboardHome />} />
             <Route path="users" element={<Users />} />
-            <Route path="products" errorElement={<MyErrorBoundary2 />} element={<Products />} />
+            <Route
+              path="products"
+              loader={loadProductsData}
+              errorElement={<MyErrorBoundary2 />}
+              element={<Products />}
+            />
 
-            <Route path="products/:id/:title?" element={<ProductDetails />} />
+            <Route
+              loader={loadProductById}
+              path="products/:id/:title?"
+              element={<ProductDetails />}
+            />
           </Route>
         </Route>
 

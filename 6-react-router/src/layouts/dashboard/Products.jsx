@@ -1,7 +1,16 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import ProductCard from "../../component/ProductCard";
-import { useLocation, useSearchParams } from "react-router";
+import { useLoaderData, useLocation, useSearchParams } from "react-router";
+
+export async function loadProductsData({ params, request }) {
+  const url = new URL(request.url);
+  const query = url.searchParams.get("q") || "";
+  const response = await axios(
+    "https://dummyjson.com/products/search?q=" + query,
+  );
+  return response.data?.products;
+}
 
 const Products = () => {
   const [products, setProducts] = useState([]);
@@ -11,9 +20,9 @@ const Products = () => {
   const query = params.get("query") || "";
   const location = useLocation();
 
-  console.log("location", location);
+//   console.log("location", location);
 
-  console.log("params", params);
+//   console.log("params", params);
 
   useEffect(() => {
     async function fetchData() {
@@ -30,10 +39,12 @@ const Products = () => {
       }
     }
 
-    fetchData();
+    // fetchData();
   }, [query]);
 
-  if(error){
+  const loaderProducts = useLoaderData();
+
+  if (error) {
     throw new Error(e);
   }
 
@@ -41,7 +52,7 @@ const Products = () => {
     const data = Object.fromEntries(formData);
     setParams({
       ...params,
-      query: data.query,
+      q: data.query,
     });
   }
 
@@ -58,7 +69,7 @@ const Products = () => {
         />
       </form>
       <div className="flex flex-wrap gap-2">
-        {products.map((item) => (
+        {loaderProducts.map((item) => (
           <ProductCard key={item.id} product={item} />
         ))}
       </div>
