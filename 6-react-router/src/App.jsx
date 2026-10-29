@@ -1,46 +1,39 @@
-import { BrowserRouter, Route, Routes } from "react-router";
-// import Login from "./layouts/Login";
-import Users from "./layouts/dashboard/Users";
-// import Products from "./layouts/dashboard/Products";
-// import Dashboard from "./layouts/dashboard/Dashboard";
-import DashboardHome from "./layouts/dashboard/DashboardHome";
-import Home from "./layouts/Home";
-// import ProductDetails from "./layouts/dashboard/ProductDetails";
-import ProtectedRoutes from "./component/ProtectedRoutes";
-import About from "./layouts/about/About";
-import { lazy, Suspense } from "react";
-import Loader from "./component/Loader";
+import AppRouter from "./routes";
 
-const Login = lazy(() => import("./layouts/Login"));
-const Dashboard = lazy(() => import("./layouts/dashboard/Dashboard"));
-const Products = lazy(() => import("./layouts/dashboard/Products"));
-const ProductDetails = lazy(() => import("./layouts/dashboard/ProductDetails"));
+// const Login = lazy(() => import("./layouts/Login"));
+// const Dashboard = lazy(() => import("./layouts/dashboard/Dashboard"));
+// const Products = lazy(() => import("./layouts/dashboard/Products"));
+// const ProductDetails = lazy(() => import("./layouts/dashboard/ProductDetails"));
 
 function App() {
-  return (
-    <BrowserRouter>
-      <Suspense fallback={<Loader message="Global loading..." />}>
-        <Routes>
-          <Route index element={<Home />} />
-
-          <Route path="login" element={<Login />} />
-
-          <Route element={<ProtectedRoutes />}>
-            <Route path="about" element={<About />} />
-            <Route path="dashboard" element={<Dashboard />}>
-              <Route index element={<DashboardHome />} />
-              <Route path="users" element={<Users />} />
-              <Route path="products" element={<Products />} />
-
-              <Route path="products/:id/:title?" element={<ProductDetails />} />
-            </Route>
-          </Route>
-
-          <Route path="*" element={<p>Not Found - 404</p>} />
-        </Routes>
-      </Suspense>
-    </BrowserRouter>
-  );
+  return <AppRouter />;
 }
+
+// function App() {
+//   return (
+//     <BrowserRouter>
+//       <Suspense fallback={<Loader message="Global loading..." />}>
+//         <Routes>
+//           <Route index element={<Home />} />
+
+//           <Route path="login" element={<Login />} />
+
+//           <Route element={<ProtectedRoutes />}>
+//             <Route path="about" element={<About />} />
+//             <Route path="dashboard" element={<Dashboard />}>
+//               <Route index element={<DashboardHome />} />
+//               <Route path="users" element={<Users />} />
+//               <Route path="products" element={<Products />} />
+
+//               <Route path="products/:id/:title?" element={<ProductDetails />} />
+//             </Route>
+//           </Route>
+
+//           <Route path="*" element={<p>Not Found - 404</p>} />
+//         </Routes>
+//       </Suspense>
+//     </BrowserRouter>
+//   );
+// }
 
 export default App;
