@@ -1,34 +1,44 @@
 import { BrowserRouter, Route, Routes } from "react-router";
-import Login from "./layouts/Login";
+// import Login from "./layouts/Login";
 import Users from "./layouts/dashboard/Users";
-import Products from "./layouts/dashboard/Products";
-import Dashboard from "./layouts/dashboard/Dashboard";
+// import Products from "./layouts/dashboard/Products";
+// import Dashboard from "./layouts/dashboard/Dashboard";
 import DashboardHome from "./layouts/dashboard/DashboardHome";
 import Home from "./layouts/Home";
-import ProductDetails from "./layouts/dashboard/ProductDetails";
+// import ProductDetails from "./layouts/dashboard/ProductDetails";
 import ProtectedRoutes from "./component/ProtectedRoutes";
+import About from "./layouts/about/About";
+import { lazy, Suspense } from "react";
+import Loader from "./component/Loader";
+
+const Login = lazy(() => import("./layouts/Login"));
+const Dashboard = lazy(() => import("./layouts/dashboard/Dashboard"));
+const Products = lazy(() => import("./layouts/dashboard/Products"));
+const ProductDetails = lazy(() => import("./layouts/dashboard/ProductDetails"));
 
 function App() {
   return (
     <BrowserRouter>
-      <Routes>
-        <Route index element={<Home />} />
+      <Suspense fallback={<Loader message="Global loading..." />}>
+        <Routes>
+          <Route index element={<Home />} />
 
-        <Route path="login" element={<Login />} />
+          <Route path="login" element={<Login />} />
 
-        <Route element={<ProtectedRoutes />}>
-          <Route path="about" element={<p>About Paragraph</p>} />
-          <Route path="dashboard" element={<Dashboard />}>
-            <Route index element={<DashboardHome />} />
-            <Route path="users" element={<Users />} />
-            <Route path="products" element={<Products />} />
+          <Route element={<ProtectedRoutes />}>
+            <Route path="about" element={<About />} />
+            <Route path="dashboard" element={<Dashboard />}>
+              <Route index element={<DashboardHome />} />
+              <Route path="users" element={<Users />} />
+              <Route path="products" element={<Products />} />
 
-            <Route path="products/:id/:title?" element={<ProductDetails />} />
+              <Route path="products/:id/:title?" element={<ProductDetails />} />
+            </Route>
           </Route>
-        </Route>
 
-        <Route path="*" element={<p>Not Found - 404</p>} />
-      </Routes>
+          <Route path="*" element={<p>Not Found - 404</p>} />
+        </Routes>
+      </Suspense>
     </BrowserRouter>
   );
 }

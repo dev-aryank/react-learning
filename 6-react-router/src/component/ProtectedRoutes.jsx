@@ -1,20 +1,24 @@
-import React from "react";
+import React, { Suspense } from "react";
 import { Navigate, Outlet, useLocation } from "react-router";
 import { useAuth } from "../providers/with-auth-provider";
+import Loader from "./Loader";
 
 const ProtectedRoutes = () => {
-
   const location = useLocation();
-  const from  = location.pathname;
+  const from = location.pathname;
 
   const { user } = useAuth();
   const isLoggedIn = user !== null;
 
   if (isLoggedIn) {
-    return <Outlet />;
+    return (
+      <Suspense fallback={<Loader message="Protected Routes" />}>
+        <Outlet />
+      </Suspense>
+    );
   }
 
-  return <Navigate to={"/login"} state={{from}} replace />;
+  return <Navigate to={"/login"} state={{ from }} replace />;
 };
 
 export default ProtectedRoutes;

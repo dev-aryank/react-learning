@@ -3,7 +3,7 @@ import { useAuth } from "../providers/with-auth-provider";
 
 const Login = () => {
   const location = useLocation();
-  const from = location.state.from || "/dashboard";
+  const from = location.state?.from || "/dashboard";
   console.log(location);
 
   const { user, setUser } = useAuth();
