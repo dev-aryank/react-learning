@@ -10,7 +10,9 @@ import Dashboard from "./layouts/dashboard/Dashboard";
 import DashboardHome from "./layouts/dashboard/DashboardHome";
 import Users from "./layouts/dashboard/Users";
 import Products, { loadProductsData } from "./layouts/dashboard/Products";
-import ProductDetails, { loadProductById } from "./layouts/dashboard/ProductDetails";
+import ProductDetails, {
+  loadProductById,
+} from "./layouts/dashboard/ProductDetails";
 import Loader from "./component/Loader";
 import ErrorPage from "./component/error-page";
 import MyErrorBoundary2 from "./component/my-beautiful-error-boundary";
@@ -40,7 +42,10 @@ const AppRouter = () => {
 
   const router = createBrowserRouter(
     createRoutesFromElements(
-      <Route errorElement={<ErrorPage message={"Gobal error"} />}>
+      <Route
+        errorElement={<ErrorPage message={"Gobal error"} />}
+        hydrateFallbackElement={<Loader />}
+      >
         <Route
           index
           hydrateFallbackElement={<Loader />}
