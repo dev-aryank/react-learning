@@ -24,9 +24,5 @@ function counterReducer(state = initialState, action) {
     }
 }
 
-const store = configureStore({
-    reducer: { counter: counterReducer },
-    devTools: true
-});
 
-export default store;
+export default counterReducer;
