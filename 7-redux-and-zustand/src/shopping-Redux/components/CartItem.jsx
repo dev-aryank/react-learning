@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import {
   decrementQuantity,
   incrementQuantity,
-} from "../../store/slices/cartSlice";
+} from "../../store-Redux/slices/cartSlice";
 
 const CartItem = ({ id, title, price, quantity, thumbnail }) => {
   const dispatch = useDispatch();

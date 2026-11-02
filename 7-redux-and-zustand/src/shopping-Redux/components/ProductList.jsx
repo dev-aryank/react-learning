@@ -1,12 +1,11 @@
 import { useEffect } from "react";
 import ProductCard from "./ProductCard";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchProducts } from "../../store/slices/productsSlice";
-import { Loader } from "lucide-react";
+import { fetchProducts } from "../../store-Redux/slices/productsSlice";
 
 const ProductList = () => {
   const products = useSelector((state) => state.products.items);
-  const status = useSelector((state) => state.products.status);
+  // const status = useSelector((state) => state.products.status);
   const dispatch = useDispatch();
 
   useEffect(() => {
