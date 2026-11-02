@@ -5,7 +5,7 @@ import {
   incrementQuantity,
 } from "../../store/slices/cartSlice";
 
-const CartItem = ({ id, title, price, quantity, image }) => {
+const CartItem = ({ id, title, price, quantity, thumbnail }) => {
   const dispatch = useDispatch();
 
   return (
@@ -15,7 +15,7 @@ const CartItem = ({ id, title, price, quantity, image }) => {
         className="h-20 w-20 rounded-xl overflow-hidden shrink-0"
       >
         <img
-          src={image}
+          src={thumbnail}
           alt={title}
           className="w-full h-full object-cover rounded-xl"
         />
