@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-// import products from "../../shopping/data/products";
+// import products from "../../shopping-Redux/data/products";
 import axios from "axios";
 
 const initialState = {
