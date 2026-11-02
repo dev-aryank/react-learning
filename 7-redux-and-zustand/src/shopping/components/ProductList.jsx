@@ -13,12 +13,12 @@ const ProductList = () => {
     dispatch(fetchProducts());
   }, []);
 
-  if (status === "Idle" || status === "Loading")
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <Loader className="animate-spin" size={40} />
-      </div>
-    );
+  // if (status === "Idle" || status === "Loading")
+  //   return (
+  //     <div className="min-h-screen flex items-center justify-center">
+  //       <Loader className="animate-spin" size={40} />
+  //     </div>
+  //   );
 
   return (
     <div className="flex flex-wrap gap-8 justify-around">
