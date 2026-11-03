@@ -1,8 +1,9 @@
-import React, { useEffect } from "react";
+import useGlobalStore from "../../store-Zustand/store";
 import ProductCard from "./ProductCard";
-import products from "../data/products";
 
 const ProductList = () => {
+
+    const products = useGlobalStore(state => state.products)
 
     return (
         <div className="flex flex-wrap gap-8 justify-around">

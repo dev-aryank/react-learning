@@ -1,20 +1,23 @@
 import { create } from "zustand";
+import counterSlice from "./slice/counterSlice";
+import productSlice from "./slice/productSlice";
+import cartSlice from "./slice/cartSlice";
+import { devtools } from "zustand/middleware"
 
-const useCounterStore = create((set, get) => {
-    return {
-        count: 0,
-        increment: () => {
-            set((state) => ({ count: state.count + 1 }));
-        },
-        decrement: () => {
-            set((state) => ({ count: state.count - 1 }));
-        },
-        incrementAsync: async (delta) => {
-            const prevCount = get().count;
-            await new Promise((resolve) => setTimeout(resolve, 3000));
-            set({ count: prevCount + delta });
-        },
-    };
-});
+// const useGlobalStore = create(devtools((...a) => (
+//     {
+//         ...counterSlice(...a),
+//         ...productSlice(...a),
+//         ...cartSlice(...a)
+//     }
+// )));
 
-export default useCounterStore;
+const useGlobalStore = create((...a) => (
+    {
+        ...counterSlice(...a),
+        ...productSlice(...a),
+        ...cartSlice(...a)
+    }
+));
+
+export default useGlobalStore;

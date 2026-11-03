@@ -1,7 +1,7 @@
-import useCounterStore from "../store-Zustand/store";
+import useGlobalStore from "../store-Zustand/store";
 
 const CounterDisplay = () => {
-  const count = useCounterStore((state) => state.count);
+  const count = useGlobalStore((state) => state.count);
 
   console.log("counterDisplay");
 
