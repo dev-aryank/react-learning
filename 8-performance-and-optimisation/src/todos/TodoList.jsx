@@ -2,15 +2,15 @@ import React, { useRef } from "react";
 import TodoItem from "./TodoItem";
 
 const TodoList = ({ todos, toggleTodo }) => {
-    console.log("Rendering TodoList");
+  // console.log("Rendering TodoList");
 
-    return (
-        <div>
-            {todos.map((todo) => (
-                <TodoItem todo={todo} onToggle={toggleTodo} />
-            ))}
-        </div>
-    );
+  return (
+    <div>
+      {todos.map((todo) => (
+        <TodoItem key={todo.id} todo={todo} onToggle={toggleTodo} />
+      ))}
+    </div>
+  );
 };
 
-export default TodoList;
+export default React.memo(TodoList);
